@@ -135,7 +135,7 @@ public class DistribFrame extends javax.swing.JFrame {
 
         affCredit.setText("insérer crédits");
 
-        jLabStatus.setText("status");
+        jLabStatus.setText("Bonjour!");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -144,12 +144,6 @@ public class DistribFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(creditD)
-                        .addGap(18, 18, 18)
-                        .addComponent(creditA)
-                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButB5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -171,13 +165,19 @@ public class DistribFrame extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabAffSucre)
+                                .addGap(55, 55, 55))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(creditD)
+                                .addGap(18, 18, 18)
+                                .addComponent(creditA)
+                                .addContainerGap())
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(affCredit)
                                 .addGap(55, 55, 55))))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jLabStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(affCredit)
-                .addGap(55, 55, 55))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,13 +207,14 @@ public class DistribFrame extends javax.swing.JFrame {
                             .addComponent(jButtonSucreA)
                             .addComponent(jButtonSucreD))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(affCredit)
-                    .addComponent(jLabStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(creditA)
-                    .addComponent(creditD))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(affCredit)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(creditA)
+                            .addComponent(creditD)))
+                    .addComponent(jLabStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -349,18 +350,20 @@ public class DistribFrame extends javax.swing.JFrame {
     
     private int retraitCredit(CBoisson a) throws InterruptedException{
         if(distrib.getCredit() < a.getPrix())
-            jLabAffSucre.setText("crédit insufisant");
+            jLabStatus.setText("crédit insufisant");
         else{
             
             for(int i = a.getPrix(); i > 0; i = distrib.getCredit()){
                 distrib.enleverCredit(5);
             }
             
-            affBoisson.setText(a.getNom()+" en préparation...");
+            jLabStatus.setText(a.getNom()+" en préparation...");
             affBoisson.setText("" + a.getNom());
+            Thread.sleep(2000);
             jLabStatus.setText("le gobelet tombe");
+            Thread.sleep(2000);
             for (int k = 0; k < a.getQte(); k++){
-                Thread.sleep(200);
+                Thread.sleep(1000);
                 jLabStatus.setText(k + " cl");
             }
             jLabStatus.setText("récupérer votre boisson!");
