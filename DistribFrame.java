@@ -363,7 +363,14 @@ public class DistribFrame extends javax.swing.JFrame {
                 Thread.sleep(200);
                 jLabStatus.setText(k + " cl");
             }
+            jLabStatus.setText("récupérer votre boisson!");
             
+            if(distrib.getCredit() > 0){
+            while(distrib.getCredit() > 0){
+                distrib.enleverCredit(5);
+            }
+            jLabStatus.setText("récupérer votre monaie");
+            }
         }
             
             return distrib.getCredit();
