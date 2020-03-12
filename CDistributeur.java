@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class CDistributeur {
 
-    private ArrayList <CBoisson> boissons; // boissons proposées (8 maximum)
+    ArrayList <CBoisson> boissons; // boissons proposées (8 maximum)
     private int credit; // monnaie insérée dans le distributeur (en centimes d'euros)
     private int sucre; // de 0 à 6 selon la dose souhaitée pour la boisson ('3' par défaut, ignoré pour les boissons sans sucre)
 
@@ -23,6 +23,14 @@ public class CDistributeur {
     public void crediter(int somme) {
         credit += somme;
         System.out.println("Votre crédit : " + credit + " centimes d'euros");
+    }
+    
+    public void enleverCredit(int somme) {
+        if (credit == 0){
+           System.out.println("essaye pas de douiller!");
+        }
+        else
+            credit -= somme;
     }
 
     public void restituerMonnaie() {

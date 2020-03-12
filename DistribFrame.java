@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  *
  * @author julien.belinga
@@ -17,9 +11,7 @@ public class DistribFrame extends javax.swing.JFrame {
     public DistribFrame() {
         initComponents();
         CBoisson cafeCourt = new CBoisson("café court", 35, false, 5);
-        CBoisson cafeCourtSansSucre = new CBoisson("café court", 35, true, 5);
         CBoisson cafeLong = new CBoisson("café long", 35, false, 10);
-        CBoisson cafeLongSansSucre = new CBoisson("café long", 35, true, 10);
         CBoisson chocolat = new CBoisson("chocolat chaud", 40, false, 10);
         CBoisson cappuccino = new CBoisson("cappuccino", 40, false, 10);
         CBoisson potageTomate = new CBoisson("potage tomate", 40, false, 10);
@@ -27,16 +19,12 @@ public class DistribFrame extends javax.swing.JFrame {
         distrib = new CDistributeur();
         
         distrib.ajouterBoisson(cafeCourt);
-        distrib.ajouterBoisson(cafeCourtSansSucre);
+        //distrib.ajouterBoisson(cafeCourtSansSucre);
         distrib.ajouterBoisson(cafeLong);
-        distrib.ajouterBoisson(cafeLongSansSucre);
+        //distrib.ajouterBoisson(cafeLongSansSucre);
         distrib.ajouterBoisson(chocolat);
         distrib.ajouterBoisson(cappuccino);
         distrib.ajouterBoisson(potageTomate);
-        
-        jLabelAfficheur.setText("sucre :" + MAJaff());
-        jListLsBoisson = distrib.boissons;
-
     }
 
     /**
@@ -51,8 +39,16 @@ public class DistribFrame extends javax.swing.JFrame {
         jButtonSucreA = new javax.swing.JButton();
         jButtonSucreD = new javax.swing.JButton();
         jLabelAfficheur = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jListLsBoisson = new javax.swing.JList<>();
+        javax.swing.JButton jButB1 = new javax.swing.JButton();
+        jButB2 = new javax.swing.JButton();
+        jButB3 = new javax.swing.JButton();
+        jButB4 = new javax.swing.JButton();
+        jButB5 = new javax.swing.JButton();
+        affBoisson = new javax.swing.JLabel();
+        creditA = new javax.swing.JButton();
+        creditD = new javax.swing.JButton();
+        affCredit = new javax.swing.JLabel();
+        jLabStatus = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,46 +67,124 @@ public class DistribFrame extends javax.swing.JFrame {
         });
 
         jLabelAfficheur.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabelAfficheur.setText("---");
+        jLabelAfficheur.setText("sucre: 3");
 
-        jListLsBoisson.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        jButB1.setText("café court");
+        jButB1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButB1ActionPerformed(evt);
+            }
         });
-        jScrollPane1.setViewportView(jListLsBoisson);
+
+        jButB2.setText("café long");
+        jButB2.setToolTipText("");
+
+        jButB3.setText("chocolat");
+
+        jButB4.setText("cappuccino");
+
+        jButB5.setText("potage tomate");
+
+        affBoisson.setText("selectionnez une boisson");
+        affBoisson.setToolTipText("");
+
+        creditA.setText("crédit +");
+        creditA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                creditAActionPerformed(evt);
+            }
+        });
+
+        creditD.setText("crédit -");
+        creditD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                creditDActionPerformed(evt);
+            }
+        });
+
+        affCredit.setText("insérer crédits");
+
+        jLabStatus.setText("status");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(217, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButtonSucreD)
-                        .addGap(28, 28, 28)
-                        .addComponent(jButtonSucreA)
-                        .addGap(21, 21, 21))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabelAfficheur)
-                        .addGap(91, 91, 91))))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(creditD)
+                        .addGap(18, 18, 18)
+                        .addComponent(creditA)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButB5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButB4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButB3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButB2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButB1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(affBoisson, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addContainerGap())
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(0, 107, Short.MAX_VALUE)
+                                        .addComponent(jButtonSucreD)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jButtonSucreA)
+                                        .addContainerGap())))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabelAfficheur)
+                                .addGap(55, 55, 55))))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(35, 35, 35)
+                .addComponent(jLabStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(affCredit)
+                .addGap(55, 55, 55))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelAfficheur)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jButB1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButB2))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(affBoisson, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButB3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButB4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButB5))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(jLabelAfficheur)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonSucreA)
+                            .addComponent(jButtonSucreD))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(affCredit)
+                    .addComponent(jLabStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonSucreA)
-                    .addComponent(jButtonSucreD))
+                    .addComponent(creditA)
+                    .addComponent(creditD))
                 .addContainerGap())
         );
 
@@ -129,9 +203,23 @@ public class DistribFrame extends javax.swing.JFrame {
         jLabelAfficheur.setText("sucre :" + MAJaff());
     }//GEN-LAST:event_jButtonSucreDActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void creditAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creditAActionPerformed
+        // TODO add your handling code here:
+        distrib.crediter(5);
+        affCredit.setText("crédit :"+ MAJCredit());
+    }//GEN-LAST:event_creditAActionPerformed
+
+    private void creditDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creditDActionPerformed
+        // TODO add your handling code here:
+        distrib.enleverCredit(5);
+        affCredit.setText("crédit :" + MAJCredit());
+    }//GEN-LAST:event_creditDActionPerformed
+
+    private void jButB1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButB1ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jButB1ActionPerformed
+ 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -166,21 +254,26 @@ public class DistribFrame extends javax.swing.JFrame {
     
     private int MAJaff(){
         distrib.getSucre();
-        
-        return distrib.getSucre();
+                return distrib.getSucre();
     }
     
-    private void affListeBoisson(){
-        for(int i = 0; i < 6; i++) {   
-    System.out.print(distrib.boissons.get(i));
-}  
+    private int MAJCredit(){
+        distrib.getCredit();
+                return distrib.getCredit();
     }
-
+       
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel affBoisson;
+    private javax.swing.JLabel affCredit;
+    private javax.swing.JButton creditA;
+    private javax.swing.JButton creditD;
+    private javax.swing.JButton jButB2;
+    private javax.swing.JButton jButB3;
+    private javax.swing.JButton jButB4;
+    private javax.swing.JButton jButB5;
     private javax.swing.JButton jButtonSucreA;
     private javax.swing.JButton jButtonSucreD;
+    private javax.swing.JLabel jLabStatus;
     private javax.swing.JLabel jLabelAfficheur;
-    private javax.swing.JList<String> jListLsBoisson;
-    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
