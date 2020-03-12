@@ -31,4 +31,12 @@ public class CBoisson {
             System.out.print(" | SANS SUCRE");
         System.out.println("");
     }
+
+    public boolean isSansSucre() {
+        return sansSucre;
+    }
+
+    public int getQte() {
+        return qte;
+    }
 }

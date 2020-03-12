@@ -1,3 +1,7 @@
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author julien.belinga
@@ -5,6 +9,7 @@
 public class DistribFrame extends javax.swing.JFrame {
 
     private CDistributeur distrib;
+    private CBoisson tabBoissons[] = new CBoisson[5];
     /**
      * Creates new form DistribFrame
      */
@@ -15,6 +20,12 @@ public class DistribFrame extends javax.swing.JFrame {
         CBoisson chocolat = new CBoisson("chocolat chaud", 40, false, 10);
         CBoisson cappuccino = new CBoisson("cappuccino", 40, false, 10);
         CBoisson potageTomate = new CBoisson("potage tomate", 40, false, 10);
+        
+        tabBoissons[1] = cafeCourt;
+        tabBoissons[2] = cafeLong;
+        tabBoissons[3] = chocolat;
+        tabBoissons[4] = cappuccino;
+        tabBoissons[5] = potageTomate;
         
         distrib = new CDistributeur();
         
@@ -38,7 +49,7 @@ public class DistribFrame extends javax.swing.JFrame {
 
         jButtonSucreA = new javax.swing.JButton();
         jButtonSucreD = new javax.swing.JButton();
-        jLabelAfficheur = new javax.swing.JLabel();
+        jLabAffSucre = new javax.swing.JLabel();
         javax.swing.JButton jButB1 = new javax.swing.JButton();
         jButB2 = new javax.swing.JButton();
         jButB3 = new javax.swing.JButton();
@@ -66,8 +77,8 @@ public class DistribFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabelAfficheur.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabelAfficheur.setText("sucre: 3");
+        jLabAffSucre.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabAffSucre.setText("sucre: 3");
 
         jButB1.setText("café court");
         jButB1.addActionListener(new java.awt.event.ActionListener() {
@@ -78,12 +89,32 @@ public class DistribFrame extends javax.swing.JFrame {
 
         jButB2.setText("café long");
         jButB2.setToolTipText("");
+        jButB2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButB2ActionPerformed(evt);
+            }
+        });
 
         jButB3.setText("chocolat");
+        jButB3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButB3ActionPerformed(evt);
+            }
+        });
 
         jButB4.setText("cappuccino");
+        jButB4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButB4ActionPerformed(evt);
+            }
+        });
 
         jButB5.setText("potage tomate");
+        jButB5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButB5ActionPerformed(evt);
+            }
+        });
 
         affBoisson.setText("selectionnez une boisson");
         affBoisson.setToolTipText("");
@@ -130,18 +161,16 @@ public class DistribFrame extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(affBoisson, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addContainerGap())
+                                    .addComponent(affBoisson, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addGap(0, 107, Short.MAX_VALUE)
                                         .addComponent(jButtonSucreD)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jButtonSucreA)
-                                        .addContainerGap())))
+                                        .addComponent(jButtonSucreA)))
+                                .addContainerGap())
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabelAfficheur)
+                                .addComponent(jLabAffSucre)
                                 .addGap(55, 55, 55))))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(35, 35, 35)
@@ -172,7 +201,7 @@ public class DistribFrame extends javax.swing.JFrame {
                         .addComponent(jButB5))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(29, 29, 29)
-                        .addComponent(jLabelAfficheur)
+                        .addComponent(jLabAffSucre)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonSucreA)
@@ -194,13 +223,13 @@ public class DistribFrame extends javax.swing.JFrame {
     private void jButtonSucreAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSucreAActionPerformed
         // TODO add your handling code here:
         distrib.augmenterSucre();
-        jLabelAfficheur.setText("sucre :" + MAJaff());
+        jLabAffSucre.setText("sucre :" + MAJaff());
     }//GEN-LAST:event_jButtonSucreAActionPerformed
 
     private void jButtonSucreDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSucreDActionPerformed
         // TODO add your handling code here:
         distrib.diminuerSucre();
-        jLabelAfficheur.setText("sucre :" + MAJaff());
+        jLabAffSucre.setText("sucre :" + MAJaff());
     }//GEN-LAST:event_jButtonSucreDActionPerformed
 
     private void creditAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creditAActionPerformed
@@ -217,8 +246,64 @@ public class DistribFrame extends javax.swing.JFrame {
 
     private void jButB1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButB1ActionPerformed
         // TODO add your handling code here:
+        CBoisson actuel;
+        actuel = tabBoissons[1];
+        
+        try {
+            retraitCredit(actuel);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(DistribFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_jButB1ActionPerformed
+
+    private void jButB2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButB2ActionPerformed
+        // TODO add your handling code here:
+        CBoisson actuel;
+        actuel = tabBoissons[2];
+        
+        try {
+            retraitCredit(actuel);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(DistribFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButB2ActionPerformed
+
+    private void jButB3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButB3ActionPerformed
+        // TODO add your handling code here:
+        CBoisson actuel;
+        actuel = tabBoissons[3];
+        
+        try {
+            retraitCredit(actuel);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(DistribFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButB3ActionPerformed
+
+    private void jButB4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButB4ActionPerformed
+        // TODO add your handling code here:
+        CBoisson actuel;
+        actuel = tabBoissons[4];
+        
+        try {
+            retraitCredit(actuel);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(DistribFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButB4ActionPerformed
+
+    private void jButB5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButB5ActionPerformed
+        // TODO add your handling code here:
+        CBoisson actuel;
+        actuel = tabBoissons[5];
+        
+        try {
+            retraitCredit(actuel);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(DistribFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButB5ActionPerformed
  
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -261,6 +346,28 @@ public class DistribFrame extends javax.swing.JFrame {
         distrib.getCredit();
                 return distrib.getCredit();
     }
+    
+    private int retraitCredit(CBoisson a) throws InterruptedException{
+        if(distrib.getCredit() < a.getPrix())
+            jLabAffSucre.setText("crédit insufisant");
+        else{
+            
+            for(int i = a.getPrix(); i > 0; i = distrib.getCredit()){
+                distrib.enleverCredit(5);
+            }
+            
+            affBoisson.setText(a.getNom()+" en préparation...");
+            affBoisson.setText("" + a.getNom());
+            jLabStatus.setText("le gobelet tombe");
+            for (int k = 0; k < a.getQte(); k++){
+                Thread.sleep(200);
+                jLabStatus.setText(k + " cl");
+            }
+            
+        }
+            
+            return distrib.getCredit();
+    }
        
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel affBoisson;
@@ -273,7 +380,7 @@ public class DistribFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButB5;
     private javax.swing.JButton jButtonSucreA;
     private javax.swing.JButton jButtonSucreD;
+    private javax.swing.JLabel jLabAffSucre;
     private javax.swing.JLabel jLabStatus;
-    private javax.swing.JLabel jLabelAfficheur;
     // End of variables declaration//GEN-END:variables
 }
