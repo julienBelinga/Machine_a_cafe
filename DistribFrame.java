@@ -21,11 +21,11 @@ public class DistribFrame extends javax.swing.JFrame {
         CBoisson cappuccino = new CBoisson("cappuccino", 40, false, 10);
         CBoisson potageTomate = new CBoisson("potage tomate", 40, false, 10);
         
-        tabBoissons[1] = cafeCourt;
-        tabBoissons[2] = cafeLong;
-        tabBoissons[3] = chocolat;
-        tabBoissons[4] = cappuccino;
-        tabBoissons[5] = potageTomate;
+        tabBoissons[0] = cafeCourt;
+        tabBoissons[1] = cafeLong;
+        tabBoissons[2] = chocolat;
+        tabBoissons[3] = cappuccino;
+        tabBoissons[4] = potageTomate;
         
         distrib = new CDistributeur();
         
@@ -247,7 +247,7 @@ public class DistribFrame extends javax.swing.JFrame {
     private void jButB1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButB1ActionPerformed
         // TODO add your handling code here:
         CBoisson actuel;
-        actuel = tabBoissons[1];
+        actuel = tabBoissons[0];
         
         try {
             retraitCredit(actuel);
@@ -260,7 +260,7 @@ public class DistribFrame extends javax.swing.JFrame {
     private void jButB2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButB2ActionPerformed
         // TODO add your handling code here:
         CBoisson actuel;
-        actuel = tabBoissons[2];
+        actuel = tabBoissons[1];
         
         try {
             retraitCredit(actuel);
@@ -272,7 +272,7 @@ public class DistribFrame extends javax.swing.JFrame {
     private void jButB3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButB3ActionPerformed
         // TODO add your handling code here:
         CBoisson actuel;
-        actuel = tabBoissons[3];
+        actuel = tabBoissons[2];
         
         try {
             retraitCredit(actuel);
@@ -284,7 +284,7 @@ public class DistribFrame extends javax.swing.JFrame {
     private void jButB4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButB4ActionPerformed
         // TODO add your handling code here:
         CBoisson actuel;
-        actuel = tabBoissons[4];
+        actuel = tabBoissons[3];
         
         try {
             retraitCredit(actuel);
@@ -296,7 +296,7 @@ public class DistribFrame extends javax.swing.JFrame {
     private void jButB5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButB5ActionPerformed
         // TODO add your handling code here:
         CBoisson actuel;
-        actuel = tabBoissons[5];
+        actuel = tabBoissons[4];
         
         try {
             retraitCredit(actuel);
